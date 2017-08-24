@@ -1,12 +1,25 @@
 public class Main {
 
+  public static void main(String[] args) {
 
-    public static void main(String[] args) {
+    EmailNotification emailNot = new EmailNotification("New Email Subject", "New Email Body", "New Email Recipient", "Google");
 
-        EmailNotification emailNotification = new EmailNotification("New Email", "New Body", "New Recipient", "Google");
-        TextNotification textNotification = new TextNotification("New", "New Text", "New Recipient", "Google ProjectFi");
+    emailNot.transport();
+    emailNot.showStatus();
+    emailNot.showText();
 
-        emailNotification.transport();
-        textNotification.transport();
+    Object emailClone = emailNot.clone();
+
+    if (emailNot.equals(emailClone)) {
+      System.out.println("It's Alive");
+    } else {
+      System.out.println("We failed! Curses");
     }
+
+    TextNotification textNot = new TextNotification("New Text Subject", "New Text Body", "New Text Recipient", "Google ProjectFi");
+
+    textNot.transport();
+    textNot.showStatus();
+
+  }
 }
